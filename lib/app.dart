@@ -1,4 +1,6 @@
+import 'package:btg_bank/providers/fund_provider.dart';
 import 'package:btg_bank/routes/routes.dart';
+import 'package:btg_bank/services/mock_fund_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +10,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [],
+      providers: [
+        ChangeNotifierProvider<FundProvider>(
+          create: (_) =>
+              FundProvider(apiService: MockFundApiService())..loadFunds(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.initialRoute,
