@@ -17,30 +17,36 @@ class HomeScreen extends StatelessWidget {
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            BalanceCard(balance: provider.balance),
-            const SizedBox(height: 20),
-            const Text(
-              'Fondos disponibles',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFF0F172A),
-              ),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 800),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                BalanceCard(balance: provider.balance),
+                const SizedBox(height: 24),
+                Text(
+                  'Fondos disponibles',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 16),
+                if (provider.isLoading)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 24),
+                    child: Center(child: CircularProgressIndicator()),
+                  )
+                else if (provider.error != null)
+                  ErrorView(
+                    message: provider.error!,
+                    onRetry: provider.loadFunds,
+                  )
+                else
+                  const FundsGrid(),
+              ],
             ),
-            const SizedBox(height: 10),
-            if (provider.isLoading)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
-                child: Center(child: CircularProgressIndicator()),
-              )
-            else if (provider.error != null)
-              ErrorView(message: provider.error!, onRetry: provider.loadFunds)
-            else
-              const FundsGrid(),
-          ],
+          ),
         ),
       ),
     );

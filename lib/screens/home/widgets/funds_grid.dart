@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FundsGrid extends StatelessWidget {
-  const FundsGrid();
+  const FundsGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
