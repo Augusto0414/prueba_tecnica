@@ -51,11 +51,18 @@ class _SubscriptionFormSheetState extends State<SubscriptionFormSheet> {
               ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 16),
+            Text(
+              'Método de notificación',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.normal,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 8),
             DropdownButtonFormField<NotificationMethod>(
               initialValue: _selectedMethod,
               decoration: const InputDecoration(
-                labelText: 'Metodo de notificacion',
-                border: OutlineInputBorder(),
+                hintText: 'Selecciona una opcion',
               ),
               items: const <DropdownMenuItem<NotificationMethod>>[
                 DropdownMenuItem<NotificationMethod>(
@@ -75,13 +82,22 @@ class _SubscriptionFormSheetState extends State<SubscriptionFormSheet> {
               },
             ),
             const SizedBox(height: 12),
+            Text(
+              _selectedMethod == NotificationMethod.email
+                  ? 'Correo electronico'
+                  : 'Numero celular',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.normal,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 8),
             TextFormField(
               controller: _destinationController,
               decoration: InputDecoration(
-                labelText: _selectedMethod == NotificationMethod.email
-                    ? 'Correo electronico'
-                    : 'Numero celular',
-                border: const OutlineInputBorder(),
+                hintText: _selectedMethod == NotificationMethod.email
+                    ? 'ejemplo@correo.com'
+                    : '1234567890',
               ),
               validator: (String? value) {
                 final String text = value?.trim() ?? '';
@@ -105,6 +121,9 @@ class _SubscriptionFormSheetState extends State<SubscriptionFormSheet> {
             SizedBox(
               width: double.infinity,
               child: FilledButton(
+                style: FilledButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 22),
+                ),
                 onPressed: () {
                   if (!_formKey.currentState!.validate()) {
                     return;

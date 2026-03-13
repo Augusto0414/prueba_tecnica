@@ -25,11 +25,14 @@ class HomeScreen extends StatelessWidget {
               children: <Widget>[
                 BalanceCard(balance: provider.balance),
                 const SizedBox(height: 24),
-                Text(
-                  'Fondos disponibles',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    'Fondos disponibles',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 if (provider.isLoading)

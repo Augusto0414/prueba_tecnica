@@ -60,9 +60,9 @@ class AppTheme {
           foregroundColor: Colors.white,
           textStyle: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontSize: 13,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -74,9 +74,9 @@ class AppTheme {
           side: const BorderSide(color: borderLightColor),
           textStyle: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
-            fontSize: 16,
+            fontSize: 13,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
