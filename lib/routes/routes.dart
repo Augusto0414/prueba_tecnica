@@ -1,4 +1,4 @@
-import 'package:btg_bank/models/AppRoute.dart';
+import 'package:btg_bank/models/app_route.dart';
 import 'package:btg_bank/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
