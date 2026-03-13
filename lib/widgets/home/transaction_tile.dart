@@ -1,5 +1,5 @@
+import 'package:btg_bank/helpers/currency_text.dart';
 import 'package:btg_bank/models/transaction_record.dart';
-import 'package:btg_bank/widgets/home/currency_text.dart';
 import 'package:flutter/material.dart';
 
 class TransactionTile extends StatelessWidget {
