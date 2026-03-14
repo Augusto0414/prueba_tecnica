@@ -14,6 +14,8 @@ class InfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -21,25 +23,35 @@ class InfoCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: const Color(0xFFE2E8F0)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            offset: const Offset(0, 4),
+            blurRadius: 12,
+          ),
+        ],
       ),
       child: Row(
         children: <Widget>[
           CircleAvatar(
-            backgroundColor: const Color(0xFFE0F2FE),
-            child: Icon(icon, color: const Color(0xFF0369A1)),
+            backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.1),
+            child: Icon(icon, color: theme.colorScheme.primary),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(title, style: const TextStyle(color: Color(0xFF475569))),
+                Text(
+                  title,
+                  style: TextStyle(color: theme.colorScheme.onSurfaceVariant),
+                ),
                 const SizedBox(height: 2),
                 Text(
                   value,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF0F172A),
+                    color: theme.colorScheme.onSurface,
                     fontSize: 16,
                   ),
                 ),
