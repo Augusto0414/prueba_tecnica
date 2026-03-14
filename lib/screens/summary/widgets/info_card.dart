@@ -4,11 +4,13 @@ class InfoCard extends StatelessWidget {
   const InfoCard({
     super.key,
     required this.title,
+    required this.subtitle,
     required this.value,
     required this.icon,
   });
 
   final String title;
+  final String subtitle;
   final String value;
   final IconData icon;
 
@@ -44,15 +46,26 @@ class InfoCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   title,
-                  style: TextStyle(color: theme.colorScheme.onSurfaceVariant),
+                  style: TextStyle(
+                    color: theme.colorScheme.onSurfaceVariant,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                  ),
                 ),
-                const SizedBox(height: 2),
+                Text(
+                  subtitle,
+                  style: TextStyle(
+                    color: Colors.grey[400],
+                    fontSize: 10,
+                  ),
+                ),
+                const SizedBox(height: 4),
                 Text(
                   value,
                   style: TextStyle(
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w800,
                     color: theme.colorScheme.onSurface,
-                    fontSize: 16,
+                    fontSize: 18,
                   ),
                 ),
               ],

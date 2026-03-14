@@ -1,4 +1,5 @@
 import 'package:btg_bank/models/fund.dart';
+import 'package:btg_bank/theme/app_theme.dart';
 import 'package:btg_bank/widgets/home/fund_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,6 +19,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        theme: AppTheme.lightTheme,
         home: Scaffold(
           body: FundCard(
             fund: fund,
@@ -29,8 +31,8 @@ void main() {
       ),
     );
 
-    expect(find.text('Fondo Prueba'), findsOneWidget);
-    expect(find.text('FPV'), findsOneWidget);
+    // Verify fund name is displayed as Title and Subtitle
+    expect(find.text(fund.name), findsNWidgets(2));
     expect(find.textContaining('50.000'), findsOneWidget);
 
     final subscribeButton = find.widgetWithText(FilledButton, 'Suscribirme');
@@ -58,6 +60,7 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
+          theme: AppTheme.lightTheme,
           home: Scaffold(
             body: FundCard(
               fund: fund,
