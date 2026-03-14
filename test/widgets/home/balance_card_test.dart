@@ -17,8 +17,8 @@ void main() {
         ),
       );
 
-      // Verify static text
-      expect(find.text('Saldo disponible'), findsOneWidget);
+      // Verify static text (title and subtitle)
+      expect(find.text('Saldo disponible'), findsNWidgets(2));
 
       // Verify formatted balance
       final formattedBalance = formatCop(balance);

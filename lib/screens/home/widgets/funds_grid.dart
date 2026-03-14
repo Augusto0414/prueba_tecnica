@@ -22,7 +22,7 @@ class FundsGrid extends StatelessWidget {
         crossAxisCount: largeScreen ? 2 : 1,
         mainAxisSpacing: 12,
         crossAxisSpacing: 12,
-        mainAxisExtent: 250,
+        mainAxisExtent: 210,
       ),
       itemBuilder: (BuildContext context, int index) {
         final Fund fund = provider.funds[index];

@@ -35,6 +35,7 @@ class SummaryScreen extends StatelessWidget {
             delay: const Duration(milliseconds: 100),
             child: InfoCard(
               title: 'Saldo actual',
+              subtitle: 'Saldo actual',
               value: formatCop(provider.balance),
               icon: Icons.account_balance_wallet_rounded,
             ),
@@ -44,6 +45,7 @@ class SummaryScreen extends StatelessWidget {
             delay: const Duration(milliseconds: 200),
             child: InfoCard(
               title: 'Fondos activos',
+              subtitle: 'Fondos activos',
               value: activeCount.toString(),
               icon: Icons.stacked_bar_chart_rounded,
             ),
@@ -53,6 +55,7 @@ class SummaryScreen extends StatelessWidget {
             delay: const Duration(milliseconds: 300),
             child: InfoCard(
               title: 'Movimientos',
+              subtitle: 'Movimientos',
               value: provider.transactions.length.toString(),
               icon: Icons.receipt_long_rounded,
             ),

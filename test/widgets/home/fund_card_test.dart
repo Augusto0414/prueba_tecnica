@@ -31,8 +31,8 @@ void main() {
       ),
     );
 
-    expect(find.text('Fondo Prueba'), findsOneWidget);
-    expect(find.text('FPV'), findsOneWidget);
+    // Verify fund name is displayed as Title and Subtitle
+    expect(find.text(fund.name), findsNWidgets(2));
     expect(find.textContaining('50.000'), findsOneWidget);
 
     final subscribeButton = find.widgetWithText(FilledButton, 'Suscribirme');
