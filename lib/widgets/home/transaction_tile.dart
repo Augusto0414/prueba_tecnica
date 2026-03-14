@@ -11,8 +11,8 @@ class TransactionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isSubscription = record.type == TransactionType.subscription;
     final Color tone = isSubscription
-        ? const Color(0xFF0F766E)
-        : const Color(0xFFB45309);
+        ? const Color(0xFFDC2626)
+        : const Color(0xFF12AC9C);
 
     final String subtitle = isSubscription ? 'Suscripcion' : 'Cancelacion';
 
