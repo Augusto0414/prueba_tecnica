@@ -14,6 +14,7 @@ void main() {
   ) async {
     await tester.pumpWidget(const App());
     await tester.pumpAndSettle();
+    
     expect(find.text('Saldo disponible'), findsOneWidget);
     expect(find.text('Fondos disponibles'), findsOneWidget);
   });

@@ -2,6 +2,7 @@ import 'package:btg_bank/providers/fund_provider.dart';
 import 'package:btg_bank/screens/home/widgets/error_view.dart';
 import 'package:btg_bank/screens/home/widgets/funds_grid.dart';
 import 'package:btg_bank/widgets/home/balance_card.dart';
+import 'package:btg_bank/widgets/shared/fade_in_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,14 +24,19 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                BalanceCard(balance: provider.balance),
+                FadeInWrapper(
+                  child: BalanceCard(balance: provider.balance),
+                ),
                 const SizedBox(height: 24),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    'Fondos disponibles',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w700,
+                FadeInWrapper(
+                  delay: const Duration(milliseconds: 100),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'Fondos disponibles',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),

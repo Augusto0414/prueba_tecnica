@@ -12,6 +12,28 @@ class AppTheme {
   static const Color successColor = Color(0xFF10B981);
   static const Color borderLightColor = Color(0xFFE2E8F0);
 
+  // Animation Durations
+  static const Duration fastAnimation = Duration(milliseconds: 200);
+  static const Duration mediumAnimation = Duration(milliseconds: 400);
+  static const Duration slowAnimation = Duration(milliseconds: 600);
+
+  // Soft Shadows
+  static List<BoxShadow> get softShadow => [
+        BoxShadow(
+          color: textPrimaryColor.withValues(alpha: 0.05),
+          offset: const Offset(0, 4),
+          blurRadius: 20,
+        ),
+      ];
+
+  static List<BoxShadow> get primaryShadow => [
+        BoxShadow(
+          color: primaryColor.withValues(alpha: 0.2),
+          offset: const Offset(0, 8),
+          blurRadius: 24,
+        ),
+      ];
+
   static ThemeData get lightTheme {
     return ThemeData.light().copyWith(
       scaffoldBackgroundColor: backgroundColor,
@@ -42,15 +64,15 @@ class AppTheme {
         fillColor: surfaceColor,
         hintStyle: GoogleFonts.poppins(color: textSecondaryColor),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(color: borderLightColor),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(color: borderLightColor),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(color: primaryColor, width: 2),
         ),
       ),
@@ -58,6 +80,7 @@ class AppTheme {
         style: FilledButton.styleFrom(
           backgroundColor: primaryColor,
           foregroundColor: Colors.white,
+          elevation: 0,
           textStyle: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             fontSize: 13,
@@ -66,6 +89,8 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
+        ).copyWith(
+          overlayColor: WidgetStateProperty.all(Colors.white.withValues(alpha: 0.1)),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -85,10 +110,35 @@ class AppTheme {
       cardTheme: CardThemeData(
         color: surfaceColor,
         elevation: 0,
+        margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(20),
           side: const BorderSide(color: borderLightColor),
         ),
+      ),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: surfaceColor,
+        indicatorColor: primaryColor.withValues(alpha: 0.1),
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return GoogleFonts.poppins(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: primaryColor,
+            );
+          }
+          return GoogleFonts.poppins(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            color: textSecondaryColor,
+          );
+        }),
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return const IconThemeData(color: primaryColor);
+          }
+          return const IconThemeData(color: textSecondaryColor);
+        }),
       ),
     );
   }

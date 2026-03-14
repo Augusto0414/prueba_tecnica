@@ -1,4 +1,5 @@
 import 'package:btg_bank/helpers/currency_text.dart';
+import 'package:btg_bank/theme/app_theme.dart';
 import 'package:btg_bank/widgets/home/balance_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -10,8 +11,9 @@ void main() {
       const int balance = 1250000;
 
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: BalanceCard(balance: balance)),
+        MaterialApp(
+          theme: AppTheme.lightTheme,
+          home: const Scaffold(body: BalanceCard(balance: balance)),
         ),
       );
 
