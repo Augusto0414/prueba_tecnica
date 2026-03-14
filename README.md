@@ -70,3 +70,11 @@ flutter test test/widgets/home/fund_card_test.dart
 - `lib/screens/`: Pantallas principales de la aplicación.
 - `lib/widgets/`: Componentes de UI reutilizables.
 - `lib/theme/`: Configuración global del diseño (AppTheme).
+
+## 🛠️ Metodología de Desarrollo (GitFlow)
+
+El proyecto se ha desarrollado siguiendo la metodología **GitFlow** para garantizar un flujo de trabajo organizado y colaborativo:
+
+- **`main`**: Rama principal con código estable y listo para producción.
+- **`develop`**: Rama de integración para nuevas funcionalidades.
+- **`feature/*`**: Ramas específicas para el desarrollo de nuevas características (ej. `feature/funds`, `feature/test`, `feature/ui`).
