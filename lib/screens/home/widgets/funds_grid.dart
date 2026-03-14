@@ -2,6 +2,7 @@ import 'package:btg_bank/models/fund.dart';
 import 'package:btg_bank/providers/fund_provider.dart';
 import 'package:btg_bank/widgets/home/fund_card.dart';
 import 'package:btg_bank/widgets/home/subscription_form_sheet.dart';
+import 'package:btg_bank/widgets/shared/fade_in_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,15 +22,18 @@ class FundsGrid extends StatelessWidget {
         crossAxisCount: largeScreen ? 2 : 1,
         mainAxisSpacing: 12,
         crossAxisSpacing: 12,
-        mainAxisExtent: 228,
+        mainAxisExtent: 250,
       ),
       itemBuilder: (BuildContext context, int index) {
         final Fund fund = provider.funds[index];
-        return FundCard(
-          fund: fund,
-          subscribed: provider.isSubscribed(fund.id),
-          onSubscribe: () => _openSubscriptionSheet(context, provider, fund),
-          onCancel: () => _cancelSubscription(context, provider, fund),
+        return FadeInWrapper(
+          delay: Duration(milliseconds: index * 50),
+          child: FundCard(
+            fund: fund,
+            subscribed: provider.isSubscribed(fund.id),
+            onSubscribe: () => _openSubscriptionSheet(context, provider, fund),
+            onCancel: () => _cancelSubscription(context, provider, fund),
+          ),
         );
       },
     );
