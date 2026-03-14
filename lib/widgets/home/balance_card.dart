@@ -39,6 +39,13 @@ class BalanceCard extends StatelessWidget {
             style: theme.textTheme.titleMedium?.copyWith(
               color: Colors.white.withValues(alpha: 0.9),
               fontWeight: FontWeight.w500,
+              shadows: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.2),
+                  offset: const Offset(0, 2),
+                  blurRadius: 4,
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 12),
@@ -47,6 +54,13 @@ class BalanceCard extends StatelessWidget {
             style: theme.textTheme.headlineLarge?.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.w700,
+              shadows: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.2),
+                  offset: const Offset(0, 2),
+                  blurRadius: 4,
+                ),
+              ],
             ),
           ),
         ],
