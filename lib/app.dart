@@ -16,7 +16,7 @@ class App extends StatelessWidget {
           create: (_) => HomeTabProvider(),
         ),
         ChangeNotifierProvider<FundProvider>(
-          create: (_) => FundProvider()..loadFunds(),
+          create: (_) => FundProvider()..initialize()..loadFunds(),
         ),
       ],
       child: MaterialApp(

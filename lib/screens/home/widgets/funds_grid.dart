@@ -3,6 +3,7 @@ import 'package:btg_bank/providers/fund_provider.dart';
 import 'package:btg_bank/widgets/home/fund_card.dart';
 import 'package:btg_bank/widgets/home/subscription_form_sheet.dart';
 import 'package:btg_bank/widgets/shared/fade_in_wrapper.dart';
+import 'package:btg_bank/widgets/shared/success_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,15 +18,15 @@ class FundsGrid extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: provider.funds.length,
+      itemCount: provider.filteredFunds.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: largeScreen ? 2 : 1,
         mainAxisSpacing: 12,
         crossAxisSpacing: 12,
-        mainAxisExtent: 210,
+        mainAxisExtent: 260,
       ),
       itemBuilder: (BuildContext context, int index) {
-        final Fund fund = provider.funds[index];
+        final Fund fund = provider.filteredFunds[index];
         return FadeInWrapper(
           delay: Duration(milliseconds: index * 50),
           child: FundCard(
@@ -59,7 +60,7 @@ class FundsGrid extends StatelessWidget {
       return;
     }
 
-    final String? error = provider.subscribeToFund(
+    final String? error = await provider.subscribeToFund(
       fund: fund,
       notificationMethod: formData.notificationMethod,
       destination: formData.destination,
@@ -69,14 +70,23 @@ class FundsGrid extends StatelessWidget {
       return;
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(error ?? 'Suscripcion realizada correctamente.'),
-        backgroundColor: error == null
-            ? const Color(0xFF166534)
-            : const Color(0xFFB91C1C),
-      ),
-    );
+    if (error == null) {
+      if (!context.mounted) return;
+      showDialog(
+        context: context,
+        builder: (_) => const SuccessDialog(
+          title: '¡Suscripción Exitosa!',
+          message: 'Te has vinculado correctamente al fondo.',
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error),
+          backgroundColor: const Color(0xFFB91C1C),
+        ),
+      );
+    }
   }
 
   Future<void> _cancelSubscription(
@@ -108,19 +118,28 @@ class FundsGrid extends StatelessWidget {
       return;
     }
 
-    final String? error = provider.cancelFund(fund);
+    final String? error = await provider.cancelFund(fund);
 
     if (!context.mounted) {
       return;
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(error ?? 'Cancelacion realizada. Saldo actualizado.'),
-        backgroundColor: error == null
-            ? const Color(0xFF0F766E)
-            : const Color(0xFFB91C1C),
-      ),
-    );
+    if (error == null) {
+      if (!context.mounted) return;
+      showDialog(
+        context: context,
+        builder: (_) => const SuccessDialog(
+          title: 'Cancelación Exitosa',
+          message: 'Tu participación ha sido cancelada y el saldo ha sido devuelto.',
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error),
+          backgroundColor: const Color(0xFFB91C1C),
+        ),
+      );
+    }
   }
 }
