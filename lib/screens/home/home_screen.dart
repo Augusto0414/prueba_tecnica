@@ -41,6 +41,46 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
+                FadeInWrapper(
+                  delay: const Duration(milliseconds: 150),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TextField(
+                      onChanged: provider.updateSearchQuery,
+                      decoration: InputDecoration(
+                        hintText: 'Buscar fondos...',
+                        prefixIcon: const Icon(Icons.search, size: 20),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                FadeInWrapper(
+                  delay: const Duration(milliseconds: 200),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Row(
+                      children: provider.categories.map((category) {
+                        final isSelected = provider.selectedCategory == category;
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: ChoiceChip(
+                            label: Text(category),
+                            selected: isSelected,
+                            onSelected: (selected) {
+                              if (selected) {
+                                provider.updateSelectedCategory(category);
+                              }
+                            },
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
                 if (provider.isLoading)
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 24),

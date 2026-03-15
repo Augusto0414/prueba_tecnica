@@ -1,5 +1,6 @@
 import 'package:btg_bank/helpers/currency_text.dart';
 import 'package:btg_bank/models/fund.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class FundCard extends StatelessWidget {
@@ -72,7 +73,7 @@ class FundCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        fund.name,
+                        'Rendimiento histórico', // Fixed duplicated fund name text
                         style: TextStyle(
                           color: Colors.grey[400],
                           fontSize: 10,
@@ -103,7 +104,42 @@ class FundCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
+
+            // performance chart
+            SizedBox(
+              height: 40,
+              child: LineChart(
+                LineChartData(
+                  gridData: const FlGridData(show: false),
+                  titlesData: const FlTitlesData(show: false),
+                  borderData: FlBorderData(show: false),
+                  lineBarsData: [
+                    LineChartBarData(
+                      spots: [
+                        const FlSpot(0, 1),
+                        const FlSpot(1, 1.5),
+                        const FlSpot(2, 1.2),
+                        const FlSpot(3, 1.8),
+                        const FlSpot(4, 2.2),
+                        const FlSpot(5, 2),
+                        const FlSpot(6, 2.5),
+                      ],
+                      isCurved: true,
+                      color: const Color(0xFF12AC9C),
+                      barWidth: 2,
+                      isStrokeCapRound: true,
+                      dotData: const FlDotData(show: false),
+                      belowBarData: BarAreaData(
+                        show: true,
+                        color: const Color(0xFF12AC9C).withOpacity(0.1),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
 
             // Middle Section: Monto Mínimo
             Container(
