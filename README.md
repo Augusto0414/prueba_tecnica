@@ -13,6 +13,16 @@ Este proyecto es una aplicación de Flutter diseñada para la visualización y g
 - **Historial de Transacciones**: Registro detallado con estados visuales (Rojo para suscripciones/débitos, Verde para cancelaciones/créditos).
 - **Resumen Ejecutivo**: Dashboards informativos con el estado actual de la cartera.
 
+## 📸 Screenshots
+
+| Dashboard & Búsqueda | Filtros Dinámicos | Suscripción | Formulario Suscripción |
+|:---:|:---:|:---:|:---:|
+| ![Dashboard](assets/image.png) | ![Filtros](assets/filter.png) | ![Suscripción](assets/suscription.png) | ![Tipo Suscripción](assets/type_suscription.png) |
+
+| Diálogo de Éxito | Historial | Resumen Cartera |
+|:---:|:---:|:---:|
+| ![Éxito](assets/dialog.png) | ![Historial](assets/history.png) | ![Resumen](assets/resumen.png) |
+
 ## 🛠️ Tecnologías Utilizadas
 
 - **Flutter & Dart**: Framework principal.
